@@ -25,26 +25,85 @@ Observe various network traffic to and from Azure Virtual Machines with Wireshar
 
 <h2>Actions and Observations</h2>
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+First step is to create a resource group in Azure portal. You will need two VMs for this project. One with Windows 10 operating system and the secound with Linux Ubuntu. Be sure that both VMs are in the same vnet. 
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/7231c0ba-578a-46f9-a623-4d9589592a82)
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+After VMs are created, you can see that both VMs are in the same resource group and vnet. 
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/0e845bab-876b-40f3-8408-f6230c9393b0)
+
+The next step we will observe ICMP traffic. Within your Windows VM install wireshark which is a protocol analyzer. Once wireshark is intalled we will filter ICMP traffic to observe the activity. Retrieve the private IP address of the Linux machine and try to ping it from your Windows VM. Once you enter the ping command, you will see it in wireshark as well powershell.
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/e09de982-8a02-48d9-9062-941001972c15)
+
+
+From The Windows 10 VM, open command line or PowerShell and attempt to ping a public website (such as www.google.com) and observe the traffic in WireShark.
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/f73bdbbe-dfba-4008-945f-edc440a57444)
+
+Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM.Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic
+Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity
+Re-enable ICMP traffic for the Network Security Group your Ubuntu VM is using
+Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity (should start working)
+Stop the ping activity
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/c0040145-a613-4ae0-bb71-dbd81b5dbd18)
+
+Deny ICMP traffic into the Linux machine. 
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/a07e6422-e6d9-46a1-bbdf-3a61e768128a)
+
+As you can see, once icmp traffic is blocked, you can no longer ping the Linux machine. 
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/34e011af-e130-46c6-bb9f-89a7b7a7bffb)
+
+Once you allow icmp, the Windows machine will continue to ping the Linux machine.
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/c03276dd-4ca9-4fc7-bfc0-1e7d6f339950)
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/e12d075e-b2b2-4aa6-ab52-0978665d8698)
+
+Back in Wireshark, filter for SSH traffic only. From your Windows 10 VM, “SSH into” your Ubuntu Virtual Machine (via its private IP address)
+Type commands (username, pwd, etc) into the linux SSH connection and observe SSH traffic spam in WireShark
+Exit the SSH connection by typing ‘exit’ and pressing [Enter]
+Once you "ssh" into the Linux maching from your windows machine, you can see ssh traffic on Wireshark. 
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/e85af415-4e24-43cb-92f8-e2eed876fb63)
+
+Observe DHCP Traffic
+Back in Wireshark, filter for DHCP traffic only
+From your Windows 10 VM, attempt to issue your VM a new IP address from the command line (ipconfig /renew)
+Observe the DHCP traffic appearing in WireShark
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/508a2320-94a5-426c-a3bc-8b8a85c8ae60)
+
+Observe DNS Traffic
+Back in Wireshark, filter for DNS traffic only
+From your Windows 10 VM within a command line, use nslookup to see what google.com and disney.com’s IP addresses are
+Observe the DNS traffic being show in WireShark
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/05d40471-69d2-4c75-9eac-0ddf94381ba1)
+
+Observe RDP Traffic
+Back in Wireshark, filter for RDP traffic only (tcp.port == 3389)
+Observe the immediate non-stop spam of traffic? Why do you think it’s non-stop spamming vs only showing traffic when you do an activity?
+Answer: because the RDP (protocol) is constantly showing you a live stream from one computer to another, therefor traffic is always being transmitted
+
+![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/1d6f586c-102a-4d76-9e7f-eb9c03371f88)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
