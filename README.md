@@ -50,15 +50,15 @@ Stop the ping activity
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/c0040145-a613-4ae0-bb71-dbd81b5dbd18)
 
-Deny ICMP traffic into the Linux machine. 
+Deny ICMP traffic into the Linux machine. Select ICMP protocol. For action select Deny. Priority 200 that way it will get bumped to the top of the rule list. You have the option to enter a description if you so please. 
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/a07e6422-e6d9-46a1-bbdf-3a61e768128a)
 
-As you can see, once icmp traffic is blocked, you can no longer ping the Linux machine. 
+As you can see, once icmp traffic is blocked, you can no longer ping the Linux machine. The request is timed out.  
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/34e011af-e130-46c6-bb9f-89a7b7a7bffb)
 
-Once you allow icmp, the Windows machine will continue to ping the Linux machine.
+Once you allow ICMP, the Windows machine will continue to ping the Linux machine.
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/c03276dd-4ca9-4fc7-bfc0-1e7d6f339950)
 
