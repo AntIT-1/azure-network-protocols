@@ -42,7 +42,7 @@ From The Windows 10 VM, open command line or PowerShell and attempt to ping a pu
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/f73bdbbe-dfba-4008-945f-edc440a57444)
 
-Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM. Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic.
+Initiate a perpetual/ non-stop ping from your Windows 10 VM to your Ubuntu VM. Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic.
 Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity.
 Re-enable ICMP traffic for the Network Security Group your Ubuntu VM is using so that the ping can go through. 
 Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity (should start working)
@@ -87,7 +87,7 @@ Observe the DNS traffic being show in WireShark
 
 Lastly, we will observe RDP Traffic which is remote desktop connection. 
 Back in Wireshark, filter for RDP traffic only (tcp.port == 3389).
-Observe the immediate non-stop spam of traffic. The reason for this is because the RDP (protocol) is constantly showing you a live stream from one computer to another, therefor traffic is always being transmitted.
+Observe the immediate non-stop spam of traffic. The reason for this is because the RDP protocol is constantly showing you a live stream from one computer to another therefor traffic is always being transmitted.
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/1d6f586c-102a-4d76-9e7f-eb9c03371f88)
 
