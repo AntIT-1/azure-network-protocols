@@ -33,7 +33,7 @@ After VMs are created, you can see that both VMs are in the same resource group 
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/0e845bab-876b-40f3-8408-f6230c9393b0)
 
-The next step we will observe ICMP traffic. Within your Windows VM install wireshark which is a protocol analyzer. Once wireshark is intalled we will filter ICMP traffic to observe the activity. Retrieve the private IP address of the Linux machine and try to ping it from your Windows VM. Once you enter the ping command, you will see it in wireshark as well powershell.
+The next step we will observe ICMP traffic. Within your Windows VM install wireshark which is a protocol analyzer. Once wireshark is intalled we will filter ICMP traffic to observe the activity. Retrieve the private IP address of the Linux machine and try to ping it from your Windows VM. Once you enter the ping command, you will see it in wireshark as well as powershell.
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/e09de982-8a02-48d9-9062-941001972c15)
 
@@ -42,11 +42,11 @@ From The Windows 10 VM, open command line or PowerShell and attempt to ping a pu
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/f73bdbbe-dfba-4008-945f-edc440a57444)
 
-Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM.Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic
-Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity
-Re-enable ICMP traffic for the Network Security Group your Ubuntu VM is using
+Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM. Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic.
+Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity.
+Re-enable ICMP traffic for the Network Security Group your Ubuntu VM is using so that the ping can go through. 
 Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity (should start working)
-Stop the ping activity
+Stop the ping activity.
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/c0040145-a613-4ae0-bb71-dbd81b5dbd18)
 
@@ -65,30 +65,29 @@ Once you allow ICMP, the Windows machine will continue to ping the Linux machine
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/e12d075e-b2b2-4aa6-ab52-0978665d8698)
 
 Back in Wireshark, filter for SSH traffic only. From your Windows 10 VM, “SSH into” your Ubuntu Virtual Machine (via its private IP address)
-Type commands (username, pwd, etc) into the linux SSH connection and observe SSH traffic spam in WireShark
-Exit the SSH connection by typing ‘exit’ and pressing [Enter]
+Type commands (username, pwd, etc) into the linux SSH connection and observe SSH traffic spam in WireShark.
+Exit the SSH connection by typing "exit" and pressing [Enter].
 Once you "ssh" into the Linux maching from your windows machine, you can see ssh traffic on Wireshark. 
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/e85af415-4e24-43cb-92f8-e2eed876fb63)
 
 Observe DHCP Traffic
-Back in Wireshark, filter for DHCP traffic only
-From your Windows 10 VM, attempt to issue your VM a new IP address from the command line (ipconfig /renew)
-Observe the DHCP traffic appearing in WireShark
+Back in Wireshark, filter for DHCP traffic only.
+From your Windows 10 VM, attempt to issue your VM a new IP address from the command line by entering ipconfig /renew.
+Observe the DHCP traffic appearing in WireShark.
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/508a2320-94a5-426c-a3bc-8b8a85c8ae60)
 
-Observe DNS Traffic
-Back in Wireshark, filter for DNS traffic only
-From your Windows 10 VM within a command line, use nslookup to see what google.com and disney.com’s IP addresses are
+Now we can observe DNS Traffic.
+Back in Wireshark, filter for DNS traffic only.
+From your Windows 10 VM within a command line, use nslookup to see what www.google.com and www.disney.com’s IP addresses are.
 Observe the DNS traffic being show in WireShark
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/05d40471-69d2-4c75-9eac-0ddf94381ba1)
 
-Observe RDP Traffic
-Back in Wireshark, filter for RDP traffic only (tcp.port == 3389)
-Observe the immediate non-stop spam of traffic? Why do you think it’s non-stop spamming vs only showing traffic when you do an activity?
-Answer: because the RDP (protocol) is constantly showing you a live stream from one computer to another, therefor traffic is always being transmitted
+Lastly, we will observe RDP Traffic which is remote desktop connection. 
+Back in Wireshark, filter for RDP traffic only (tcp.port == 3389).
+Observe the immediate non-stop spam of traffic. The reason for this is because the RDP (protocol) is constantly showing you a live stream from one computer to another, therefor traffic is always being transmitted.
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/1d6f586c-102a-4d76-9e7f-eb9c03371f88)
 
