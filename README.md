@@ -42,13 +42,7 @@ From The Windows 10 VM, open command line or PowerShell and attempt to ping a pu
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/f73bdbbe-dfba-4008-945f-edc440a57444)
 
-Initiate a perpetual/ non-stop ping from your Windows 10 VM to your Ubuntu VM. Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic.
-Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity.
-Re-enable ICMP traffic for the Network Security Group your Ubuntu VM is using so that the ping can go through. 
-Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity (should start working)
-Stop the ping activity.
 
-![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/c0040145-a613-4ae0-bb71-dbd81b5dbd18)
 
 Deny ICMP traffic into the Linux machine. Select ICMP protocol. For action select Deny. Priority 200 that way it will get bumped to the top of the rule list. You have the option to enter a description if you so please. 
 
