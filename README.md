@@ -44,7 +44,7 @@ From The Windows 10 VM, open command line or PowerShell and attempt to ping a pu
 
 
 
-Deny ICMP traffic into the Linux machine. Select ICMP protocol. For action select Deny. Priority 200 that way it will get bumped to the top of the rule list. You have the option to enter a description if you so please. 
+In this next step will observe what happens when you deny a certain protocol. Deny ICMP traffic into the Linux machine. Select ICMP protocol. For action select Deny. Priority 200 that way it will get bumped to the top of the rule list. You have the option to enter a description if you so please. 
 
 ![image](https://github.com/AntIT-1/azure-network-protocols/assets/141161539/a07e6422-e6d9-46a1-bbdf-3a61e768128a)
 
